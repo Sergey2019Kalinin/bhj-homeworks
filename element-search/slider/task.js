@@ -5,29 +5,28 @@ const arrowRight = document.getElementsByClassName('slider__arrow_next');
 let n = 0;
 
 function slideImg(arg) {
-    arrayItem.forEach((e, i) => {
-        if (e.classList.contains('slider__item_active')) {
-            return e.classList.remove('slider__item_active');
-        }
-    })
-    return arrayItem[arg].classList.add('slider__item_active');
-}
+    document.querySelector("div.slider__item.slider__item_active")
+    .className = "slider__item";
+    
+    return arrayItem[arg]
+    .classList.add('slider__item_active');
+};
+
 
 arrowLeft[0].onclick = function() {
     if (n === 0) {
-        n = 4;
-        return slideImg(n);
+        n = (arrayItem.length - 1);
     } else if (n !== 0) {
         n -= 1;
-        return slideImg(n);
     }
+    return slideImg(n);
 }
+
 arrowRight[0].onclick = function() {
-    if (n < 4) {
+    if (n < (arrayItem.length - 1)) {
         n += 1;
-        return slideImg(n);
-    } else if (n === 4) {
+    } else if (n === (arrayItem.length - 1)) {
         n = 0;
-        return slideImg(n);
     }
+    return slideImg(n);
 }
