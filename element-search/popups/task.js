@@ -10,9 +10,11 @@ btnWindowPopDanger.onclick = () => {
     windowPopSuccess.className = "modal modal_active";
 };
 
-let btnClose = document.querySelectorAll("div.modal__close.modal__close_times")[1];
+let btnsClose = document.querySelectorAll("div.modal__close.modal__close_times");
 
-btnClose.onclick = () => {
-    windowPopSuccess.className = "modal";
-};
+for(let i = 0; btnsClose.length > i; i++) {
 
+    btnsClose[i].onclick = function() {
+        this.closest('.modal').className = "modal";
+    }
+}
