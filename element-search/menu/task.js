@@ -4,15 +4,17 @@ for(let i = 0; menuLink.length > i; i++) {
 
     menuLink[i].onclick = function() {
 
-        subMenu = this.parentElement.querySelector("ul");
+        haveSubMenu = this.parentElement.querySelector("ul");
 
-        if(subMenu.className === 'menu menu_sub') {
-            subMenu.className = 'menu menu_sub menu_active';
+        if(haveSubMenu) {
+
+        if(haveSubMenu.className === 'menu menu_sub') {
+            haveSubMenu.className = 'menu menu_sub menu_active';
             return false;
-            
-        } else if(subMenu.className === 'menu menu_sub menu_active') {
-          subMenu.className = 'menu menu_sub';
-          return false;
+        } else if(haveSubMenu.className === 'menu menu_sub menu_active') {
+              haveSubMenu.className = 'menu menu_sub';
+              return false;
+          }
         }
     }
 }
