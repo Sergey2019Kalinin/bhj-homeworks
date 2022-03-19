@@ -16,15 +16,24 @@ class Game {
     this.lossElement.textContent = 0;
   }
 
+
   registerEvents() {
-    /*
-      TODO:
-      Написать обработчик события, который откликается
-      на каждый введённый символ.
-      В случае правильного ввода слова вызываем this.success()
-      При неправильном вводе символа - this.fail();
-     */
+
+//регистрируем обработчик нажатия клавиши
+    addEventListener('keydown', (event)  => {
+
+//сопоставляем введённое значение с правильным ожидаемым
+    if (event.key.toUpperCase() ===
+        this.currentSymbol.textContent.toUpperCase()) {
+
+//в зависимости от результата вызываем необходимый метод
+          this.success();
+        } else {
+            this.fail();
+          };
+    });
   }
+
 
   success() {
     this.currentSymbol.classList.add('symbol_correct');
@@ -86,5 +95,5 @@ class Game {
   }
 }
 
-new Game(document.getElementById('game'))
+new Game(document.getElementById('game'));
 
