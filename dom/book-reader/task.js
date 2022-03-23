@@ -14,7 +14,7 @@ for(let i  = 0; i < fontSizes.length; i++) {
         item.classList.remove('font-size_active'));
 
 //добавляем метку активного в класс выбранного размера шрифта
-    this.classList.add('fontSize_active');
+    this.classList.add('font-size_active');
 
 //по свойству data определяем выбранный размер шрифта
 //и указываем необходимый класс элементу book
@@ -30,7 +30,7 @@ for(let i  = 0; i < fontSizes.length; i++) {
 
 //отмена стандартного действия - перехода по ссылке
 //(не работает, страница всё равно обновляется)
-    return false;
+    event.preventDefault();
     });
 }
 
