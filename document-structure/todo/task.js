@@ -1,58 +1,36 @@
-// находим необходимые элементы:
-
-// список дел
 const tasksList = document.getElementById("tasks__list");
 
-// инпут
 const input = document.getElementById("task__input");
 
-// кнопка добавления в список дел
 const tasksAdd = document.getElementById("tasks__add");
 
-// список кнопок удаления
 const taskRemove = document.getElementsByClassName("task__remove");
 
-// обработчик по нажатию на Добавить
+
 tasksAdd.addEventListener("click", (event) => {
+  // прослушивая событие отправки формы,
+  // можем отменить действие браузера по умолчанию
+  event.preventDefault();
 
-    // прослушивая событие отправки формы,
-    // можем отменить действие браузера по умолчанию
-    event.preventDefault();
+  let newElement = document.createElement("div");
 
-    // добавляем в список дел введённое в инпуте
-    tasksList.innerHTML +=
-        `<div class="task">
+  newElement.append(
+    `<div class="task">
             <div class="task__title">` +
-
-        input.value +
-
-            `</div>
+    input.value +
+    `</div>
             <a href="#" class="task__remove">&times;</a>
-        </div>`;
+        </div>`);
 
-    // очищаем инпут
-    input.value = "";
 
-    // обработчик на текущую кнопку Удалить
-    taskRemove[taskRemove.length - 1].addEventListener("click", () => {
+  tasksList.appendChild(newElement);
 
-        // удаление через метод родительского элемент кнопки Удалить
-        taskRemove[taskRemove.length - 1].parentElement.remove();
+  // очищаем инпут
+  input.value = "";
 
-    });
+  newElement.querySelector(".task__remove").addEventListener("click", () => {
+    // удаление через метод родительского элемент кнопки Удалить
+    newElement.remove();
+  });
 });
-
-/*
-
-Здравствуйте, прошу подсказать как действовать дальше:
-
-- добавление новых пунктов в список дел стирает
-обработчик кнопки удаления у предыдещего пункта списка
-
-*/
-
-
-
-
-
 

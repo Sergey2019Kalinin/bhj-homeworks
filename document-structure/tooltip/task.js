@@ -1,42 +1,53 @@
-// находим все элементы, для которых нужна подсказка по клику
-const hasoToltip = document.getElementsByClassName("has-tooltip");
+const hasTooltip = document.getElementsByClassName("has-tooltip");
 
-// находим все элементы-подсказки
-const tooltip = document.getElementsByClassName("tooltip");
+for (let i = 0; i < hasTooltip.length; i++) {
+      
 
-// отменяем переход по ссылкам на элементах,
-// для которых нужна подсказка по клику
-for (let k = 0; k < hasoToltip.length; k++) {
-  hasoToltip[k].onclick = function () {
-    return false;
+  hasTooltip[i].addEventListener("click", (event) => {
+event.preventDefault();
+    const tooltip = document.querySelector("tooltip_active");
+
+if (tooltip !== null) {
+    switch(hasTooltip[i].innerText) {
+        case 'Помогите пожалуйста':  // if (x === 'value1')
+          tooltip.style.top = "15 px";
+      tooltip.style.left = "50";
+    break;
+
+  case 'Нажми сюда и выиграй миллион!':  // if (x === 'value2')
+      tooltip.style.top = "155 px";
+      tooltip.style.left = "178 px";
+    break;
+
+  case 'Для просмотра подсказки нажмите сюда':  // if (x === 'value2')
+      tooltip.style.top = "135 px";
+      tooltip.style.left = "186 px";
+    break;
   };
-}
 
-// создаём элемент-подсказку в положении afterEnd
-for (let i = 0; i < hasoToltip.length; i++) {
 
-  hasoToltip[i].insertAdjacentHTML(
-    "afterEnd",
-    `<div class="tooltip">` + hasoToltip[i].title + `</div>`
-  );
-
-  // в обработчике добавляем или убираем класс для демонстрации подсказки
-  hasoToltip[i].addEventListener("click", function () {
-
-    if (!tooltip[i].classList.contains("tooltip_active")) {
-      tooltip[i].classList.add("tooltip_active");
-
-    } else {
-      tooltip[i].classList.remove("tooltip_active");
+    tooltip.style.position = "absolute";
     }
 
-  });
+
+
+
+
+    if (hasTooltip[i].children.length == 0) {
+      hasTooltip[i].appendChild(document.createElement("div")).innerHTML +=
+        " " + hasTooltip[i].title;
+
+            let tooltip = hasTooltip[i].children[0];
+
+          tooltip.className = "tooltip_active tooltip";
+
+        
+} else if (hasTooltip[i].children[0].className === "tooltip") {
+            hasTooltip[i].children[0].className =
+            "tooltip_active tooltip";
+      } else {
+      hasTooltip[i].children[0].className= "tooltip";
+}
+});
 }
 
-/* Здравствуйте, прошу подсказать как действовать дальше:
-
-- подсказка у второго элемента отображанется под первым.
-
-- у последующих элементо подсказка вообще не отображается,
-хотя появляется в HTML
-*/
