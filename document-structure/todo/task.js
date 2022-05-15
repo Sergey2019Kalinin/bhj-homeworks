@@ -12,6 +12,8 @@ tasksAdd.addEventListener("click", (event) => {
   // можем отменить действие браузера по умолчанию
   event.preventDefault();
 
+  if (input.value.trim() !== "") {
+
   let newElement = document.createElement("div");
 
   newElement.innerHTML +=
@@ -32,5 +34,6 @@ tasksAdd.addEventListener("click", (event) => {
     // удаление через метод родительского элемент кнопки Удалить
     newElement.remove();
   });
+}
 });
 
