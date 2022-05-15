@@ -14,13 +14,13 @@ tasksAdd.addEventListener("click", (event) => {
 
   let newElement = document.createElement("div");
 
-  newElement.append(
+  newElement.innerHTML +=
     `<div class="task">
             <div class="task__title">` +
     input.value +
     `</div>
             <a href="#" class="task__remove">&times;</a>
-        </div>`);
+        </div>`;
 
 
   tasksList.appendChild(newElement);

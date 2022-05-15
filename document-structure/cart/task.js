@@ -29,9 +29,11 @@ let result = arrayForCheck.find(element => element.dataset.id ===
   productAdd[i].closest(".product").dataset.id);
 
 if (result) {
-  result.getElementsByClassName("cart__product-count")[0].innerText = Number(result.getElementsByClassName("cart__product-count")[0].innerText) + Number(quantityValue[i].innerText);
-} else {
+  result.getElementsByClassName("cart__product-count")[0].innerText =
+   Number(result.getElementsByClassName("cart__product-count")[0].innerText) + 
+   Number(quantityValue[i].innerText);
 
+} else {
         let product = document.createElement("text");
 
         cartProducts[0].appendChild(product);
@@ -52,10 +54,6 @@ if (result) {
           }
         });
 
-
-
-  
-
   //на кнопке "Увеличить количество товара"
   controlIncrease[i].addEventListener("click", () => {
     quantityValue[i].innerText = Number(quantityValue[i].innerText) + 1;
@@ -63,31 +61,9 @@ if (result) {
 
   //на кнопке "Уменьшить количество товара"
   controlDecrease[i].addEventListener("click", () => {
-    if (Number(quantityValue[i].innerText) > 0) {
+    if (Number(quantityValue[i].innerText) > 1) {
       quantityValue[i].innerText = Number(quantityValue[i].innerText) - 1;
     
   };
 });
 }
-
-
-
-
-/*
-
-Здравствуйте, прошу подсказать как действовать дальше.
-Возникшие сложности:
-
-- не могу добавить товар именно в Корзину В HTML-разметке.
-метод append:
-cartProducts[cartProducts.length - 1].append(product)
-добавляет текст в кавычках вместо HTML-разметки.
-А appendChild выдаёт ошибку.
-
-- товары в корзине располагаются друг под другом - скорее всего, по причине
-ошибочного установления элемента в разметку HTML методом insertAdjacentHTML.
-
-- количество товара в корзине отображается в правом углу - скорее всего, по причине
-ошибочного установления элемента в разметку HTML методом insertAdjacentHTML.
-- 
-*/
