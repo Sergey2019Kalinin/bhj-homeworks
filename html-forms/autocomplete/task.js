@@ -56,9 +56,9 @@ class Autocomplete {
 
   renderMatches( matches ) {
     const html = matches.map( item => `
-    	<li>
+      <li>
         <span class="autocomplete__item"
-        	data-index="${item.index}"
+          data-index="${item.index}"
           data-id="${item.value}"
         >${item.text}</span>
       </li>
@@ -72,18 +72,22 @@ class Autocomplete {
     // создаём пустой массив для заполнения
     let array = [];
 
-    // циклом проходим по списку опций select-элемента
-    for (let i=0; i < this.input.length; i++) {
+    // получаем массив
+    for (let i = 0; i < ccc.input.length; i++) {
+          array.push(ccc.input[i].textContent);
+        }
 
-      // пушим создаваемые объекты с нужными данными в массив
-      array.push({
-        text: c.input[i].textContent,
-        value: this.input[i].value,
-      },);
-    };
+    if (array.includes(text)) {
 
-    return array;
+          let index = array.indexOf(text); 
+          return [{
+            text: this.input[index].textContent,
+            value: this.input[index].value,
+            }];
+    }
   }
 }
 
-new Autocomplete( document.querySelector( '.autocomplete' ));
+
+
+// new Autocomplete( document.querySelector( '.autocomplete' ));
