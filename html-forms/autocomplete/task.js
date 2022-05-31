@@ -1,31 +1,30 @@
 class Autocomplete {
-  constructor( container ) {
+  constructor(container) {
     this.container = container;
-    this.input = container.querySelector( '.autocomplete__input' );
-    this.searchInput = container.querySelector( '.autocomplete__search' );
-    this.list = container.querySelector( '.autocomplete__list' );
-    this.valueContainer = container.querySelector( '.autocomplete__value' );
-    this.valueElement = container.querySelector( '.autocomplete__text-content' );
+    this.input = container.querySelector(".autocomplete__input");
+    this.searchInput = container.querySelector(".autocomplete__search");
+    this.list = container.querySelector(".autocomplete__list");
+    this.valueContainer = container.querySelector(".autocomplete__value");
+    this.valueElement = container.querySelector(".autocomplete__text-content");
 
     this.registerEvents();
   }
 
   registerEvents() {
-    this.valueContainer.addEventListener( 'click', e => {
-      this.searchInput.classList.add( 'autocomplete__search_active' );
-      this.list.classList.add( 'autocomplete__list_active' );
+    this.valueContainer.addEventListener("click", (e) => {
+      this.searchInput.classList.add("autocomplete__search_active");
+      this.list.classList.add("autocomplete__list_active");
       this.searchInput.value = this.valueElement.textContent.trim();
       this.searchInput.focus();
 
       this.onSearch();
     });
 
+    this.searchInput.addEventListener("input", (e) => this.onSearch());
 
-    this.searchInput.addEventListener( 'input', e => this.onSearch());
-
-    this.list.addEventListener( 'click', e => {
+    this.list.addEventListener("click", (e) => {
       const { target } = e;
-      if ( !target.matches( '.autocomplete__item' )) {
+      if (!target.matches(".autocomplete__item")) {
         return;
       }
 
@@ -40,54 +39,49 @@ class Autocomplete {
     });
   }
 
-  onSelect( item ) {
+  onSelect(item) {
     this.input.selectedIndex = item.index;
     this.valueElement.textContent = item.text;
 
-    this.searchInput.classList.remove( 'autocomplete__search_active' );
-    this.list.classList.remove( 'autocomplete__list_active' );
+    this.searchInput.classList.remove("autocomplete__search_active");
+    this.list.classList.remove("autocomplete__list_active");
   }
 
   onSearch() {
-    const matches = this.getMatches( this.searchInput.value );
+    const matches = this.getMatches(this.searchInput.value);
 
-    this.renderMatches( matches );
+    this.renderMatches(matches);
   }
 
-  renderMatches( matches ) {
-    const html = matches.map( item => `
+  renderMatches(matches) {
+    const html = matches.map(
+      (item) => `
       <li>
         <span class="autocomplete__item"
           data-index="${item.index}"
           data-id="${item.value}"
         >${item.text}</span>
       </li>
-    `);
+    `
+    );
 
-    this.list.innerHTML = html.join('');
+    this.list.innerHTML = html.join("");
   }
 
-  getMatches( text ) {
-    
-    // создаём пустой массив для заполнения
-    let array = [];
-
-    // получаем массив
-    for (let i = 0; i < ccc.input.length; i++) {
-          array.push(ccc.input[i].textContent);
-        }
-
-    if (array.includes(text)) {
-
-          let index = array.indexOf(text); 
-          return [{
-            text: this.input[index].textContent,
-            value: this.input[index].value,
-            }];
+  getMatches(text) {
+    for (let i = 0; i < this.input.length; i++) {
+      if (this.input[i].textContent.includes(text)) {
+        return [
+          {
+            text: this.input[i].textContent,
+            value: this.input[i].value
+          }
+        ];
+      }
     }
   }
 }
 
-
-
-// new Autocomplete( document.querySelector( '.autocomplete' ));
+/*
+new Autocomplete( document.querySelector( '.autocomplete' ));
+*/
