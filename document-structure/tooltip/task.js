@@ -22,7 +22,8 @@ for (let i = 0; i < hasTooltip.length; i++) {
       hasTooltip[i].children[0].className = "tooltip";
   }
         hasTooltip[i].children[0].setAttribute('style', 
-          `top: inherit + 20 px; left: ${hasTooltip[i].getBoundingClientRect().left}px; position: absolute`);
+          `top: inherit + 20 px; left: ${hasTooltip[i]
+            .getBoundingClientRect().left}px; position: absolute`);
 });
   }
 
