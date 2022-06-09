@@ -69,6 +69,8 @@ class Autocomplete {
   }
 
   getMatches(text) {
+
+
     for (let i = 0; i < this.input.length; i++) {
       if (this.input[i].textContent.includes(text)) {
         return [
@@ -82,6 +84,5 @@ class Autocomplete {
   }
 }
 
-/*
+
 new Autocomplete( document.querySelector( '.autocomplete' ));
-*/

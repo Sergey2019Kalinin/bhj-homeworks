@@ -5,7 +5,7 @@ for (let i = 0; i < input.length; i++) {
   input[i].addEventListener("click", function () {
 
     if (input[i].closest(".interests_active")) {
-      input[i].checked = !input[i].checked;
+      input[i].checked != input[i].checked;
       
     } else {
       let checkedInput = input[i]
