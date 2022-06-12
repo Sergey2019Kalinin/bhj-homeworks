@@ -69,20 +69,19 @@ class Autocomplete {
   }
 
   getMatches(text) {
-
+    let result = [];
 
     for (let i = 0; i < this.input.length; i++) {
       if (this.input[i].textContent.includes(text)) {
-        return [
-          {
-            text: this.input[i].textContent,
-            value: this.input[i].value
-          }
-        ];
+        result.push({
+          text: this.input[i].textContent,
+          value: this.input[i].value
+        });
       }
     }
+
+    return result;
   }
 }
 
-
-new Autocomplete( document.querySelector( '.autocomplete' ));
+new Autocomplete(document.querySelector(".autocomplete"));
