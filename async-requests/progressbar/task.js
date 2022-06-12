@@ -2,11 +2,11 @@ const progress = document.getElementById("progress");
 
 const form = document.getElementById("form");
 
-const oData = new FormData(form);
-
-const oReq = new XMLHttpRequest();
-
 form.addEventListener("submit", function (ev) {
+
+	const oData = new FormData(form);
+
+	const oReq = new XMLHttpRequest();
 
     oReq.open("POST", "https://netology-slow-rest.herokuapp.com/upload.php");
 
@@ -20,12 +20,14 @@ form.addEventListener("submit", function (ev) {
       }
     };
 
+
+
     ev.preventDefault();
     
-  },
-  false
-);
+  },false);
 
-oReq.upload.onprogress = function (event) {
+// не понимаю как обратиться к запросу вне обработчика
+    oReq.upload.onprogress = function (event) {
       progress.value = event.loaded/event.total;
     };
+
